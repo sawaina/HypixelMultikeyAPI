@@ -1,10 +1,10 @@
-const axios = require("axios").default;
+import axios from "axios";
 
-let curKeyIndex = 0;
+let curKeyIndex: number = 0;
 
-class HypixelAPI {
-    static apikeys;
-    constructor(...keys) {
+export class HypixelAPI {
+    static apikeys: string[];
+    constructor(...keys: string[]) {
         if(keys.length >= 1) {
             HypixelAPI.apikeys = keys;
         } else {
@@ -12,7 +12,7 @@ class HypixelAPI {
         }
     }
 
-    getNextKey() {
+    getNextKey(): string {
         if(HypixelAPI.apikeys.length !== curKeyIndex) {
             curKeyIndex++
             return HypixelAPI.apikeys[curKeyIndex]
@@ -22,8 +22,9 @@ class HypixelAPI {
         }
     }
 
-    sendactualrequest(path, usekeys, extra) {
-        let response;
+    sendactualrequest(path: string, usekeys: boolean, extra?: string): Promise<any> {
+        if(extra === undefined) extra = "";
+        let response: any;
         let keyBlock = "";
         if(usekeys) {
             keyBlock = `&key=${this.getNextKey()}`
@@ -45,41 +46,27 @@ class HypixelAPI {
         return this.sendactualrequest("key", true)
     }
 
-    async player(uuid) {
+    async player(uuid: string) {
         return this.sendactualrequest("player", true, `&uuid=${uuid}`)
     }
 
-    async friends(uuid) {
+    async friends(uuid: string) {
         return this.sendactualrequest("friends", true, `&uuid=${uuid}`)
     }
 
-    async recentgames(uuid) {
+    async recentgames(uuid: string) {
         return this.sendactualrequest("recentgames", true, `&uuid=${uuid}`)
     }
 
-    async status(uuid) {
+    async status(uuid: string) {
         return this.sendactualrequest("status", true, `&uuid=${uuid}`)
     }
 
-    async guild(method, data) {
-        const methods = ["id", "player", "name"]
-        if(!(method in methods)) {
-            throw new Error("You did not provide a correct parameter.")
-        } else {
-            const selectedmethod = method.toLowerCase();
-            return this.sendactualrequest("guild", true, `&${selectedmethod}=${data}`)
-        }
-    }
-
-    async rankedskywars(uuid) {
+    async rankedskywars(uuid: string) {
         return this.sendactualrequest("ranked/skywars", true, `&uuid=${uuid}`)
     }
 
-    async resources(method) {
-        const methods = ["achievements", "challenges", "quests", "guilds/achievements", "guilds/permissions", "skyblock/collections", "skyblock/skills"]
-        if(!(method in methods)) {
-            throw new Error("You did not provide a correct parameter.")
-        }
+    async resources(method: "achievements" | "challenges" | "quests" | "guilds/achievements" | "guilds/permissions" | "skyblock/collections" | "skyblock/skills") {
         return this.sendactualrequest(`resources/${method}`, false)
     }
 
@@ -103,4 +90,3 @@ class HypixelAPI {
 
 }
 
-module.exports = {HypixelAPI}

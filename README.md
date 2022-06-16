@@ -1,11 +1,14 @@
-An API wrapper for Hypixel that allows usage of multiple api keys. Skyblock is not added here.
+A  basic API wrapper for Hypixel, with typescript bindings - Up to date with the resources endpoint. (This does not include Skyblock as of this build.) Feel free to submit a PR.
 
-Basic Usage
+##Usage
 
 ```
-const { HypixelAPI } = require("hypixel-multikey-wrapper");
-const API = new HypixelAPI("your-key-here");
+const { HypixelAPI } = require("./index.js");
+const APIWrapper = new HypixelAPI("key1", "key2", "key3"); // This takes as many keys you want as arguments
 
-console.log(API.key());
+(async () => {
+    await APIWrapper.key() // Key Info
+    await APIWrapper.player("testuuid") // Player Info
+})();
 ```
 

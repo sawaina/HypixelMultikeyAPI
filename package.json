@@ -2,13 +2,17 @@
   "name": "hypixel-multikey-wrapper",
   "version": "1.0.1",
   "description": "A Hypixel API wrapper that allows usage of multiple keys.",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "author": "sawaina",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.3"
   }
 }
