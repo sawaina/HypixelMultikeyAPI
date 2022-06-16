@@ -1,6 +1,6 @@
-A  basic API wrapper for Hypixel, with typescript bindings - Up to date with the resources endpoint. (This does not include Skyblock as of this build.) Feel free to submit a PR.
+A  basic API wrapper for Hypixel, with typescript bindings - Up to date with the resources endpoint. Feel free to submit a PR.
 
-##Usage
+## Usage
 
 ```
 const { HypixelAPI } = require("./index.js");

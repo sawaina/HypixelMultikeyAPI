@@ -14,4 +14,6 @@ export declare class HypixelAPI {
     counts(): Promise<any>;
     leaderboards(): Promise<any>;
     punishmentstats(): Promise<any>;
+    guild(method: "id" | "player" | "name", data: string): Promise<any>;
+    skyblock(method: "news" | "auction" | "bazaar" | "profile" | "profiles" | "bingo", data: string): Promise<any>;
 }

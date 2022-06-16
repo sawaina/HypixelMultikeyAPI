@@ -88,5 +88,12 @@ export class HypixelAPI {
         return this.sendactualrequest("punishmentstats", true)
     }
 
+    async guild(method: "id" | "player" | "name", data: string) {
+        return this.sendactualrequest("guild", true, `&${method}=${data}`)
+    }
+
+    async skyblock(method: "news" | "auction" | "bazaar" | "profile" | "profiles" | "bingo", data: string) {
+        return this.sendactualrequest("skyblock", true, `&${method}=${data}`)
+    }
 }
 
