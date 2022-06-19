@@ -5,7 +5,7 @@ A  basic API wrapper for Hypixel, with typescript bindings - Up to date with the
 ## Usage
 
 ```
-const { HypixelAPI } = require("./index.js");
+const { HypixelAPI } = require("hypixelmultikeyapi");
 const APIWrapper = new HypixelAPI("key1", "key2", "key3"); // This takes as many keys you want as arguments
 
 (async () => {
